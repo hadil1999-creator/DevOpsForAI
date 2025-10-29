@@ -17,10 +17,13 @@ jobs:
         python-version: '3.9'
     - name: Install dependencies
       run: |
-        pip install numpy pandas scikit-learn scipy
+        bash environment_setup/install_requirements.sh
     - name: Run data test
       run: |
         python code/testing/data_test.py data/diabetes.csv
+    - name: Train model
+      run: |
+        python code/training/train.py
     - name: Run scoring test
       run: |
         python code/scoring/score.py
