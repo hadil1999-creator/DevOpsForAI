@@ -1,0 +1,26 @@
+name: Test DevOpsForAI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.6'
+    - name: Install dependencies
+      run: |
+        pip install numpy pandas scikit-learn scipy
+    - name: Run data test
+      run: |
+        python code/testing/data_test.py data/diabetes.csv
+    - name: Run scoring test
+      run: |
+        python code/scoring/score.py
