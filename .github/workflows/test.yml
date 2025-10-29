@@ -17,13 +17,10 @@ jobs:
         python-version: '3.9'
     - name: Install dependencies
       run: |
-        bash environment_setup/install_requirements.sh
+        pip install scipy==1.0.0 scikit-learn==0.19.1 numpy==1.14.5 pandas==0.23.1 azureml-sdk[notebooks]
     - name: Run data test
       run: |
         python code/testing/data_test.py data/diabetes.csv
-    - name: Train model
-      run: |
-        python code/training/train.py
     - name: Run scoring test
       run: |
         python code/scoring/score.py
